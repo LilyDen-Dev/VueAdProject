@@ -22,8 +22,8 @@ export default {
 
             try {
                 const user = await  fb.auth().createUserWithEmailAndPassword(email, password);
-                commit('serUser', new User(user.uid));
-                commit('setLoading', true);
+                commit('setUser', new User(user.user.uid));
+                commit('setLoading', false);
             } catch (error) {
                 commit('setLoading', false);
                 commit('setError', error.message);
@@ -36,8 +36,8 @@ export default {
 
             try {
                 const user = await  fb.auth().signInWithEmailAndPassword(email, password);
-                commit('serUser', new User(user.uid));
-                commit('setLoading', true);
+                commit('setUser', new User(user.user.uid));
+                commit('setLoading', false);
             } catch (error) {
                 commit('setLoading', false);
                 commit('setError', error.message);

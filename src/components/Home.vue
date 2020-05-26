@@ -1,9 +1,9 @@
 <template>
-    <v-container fluid>
+    <v-container v-if="!loading" fluid>
         <v-layout>
             <v-carousel>
                 <v-carousel-item
-                        v-for="(ad) in promoAds"
+                        v-for="(ad) in ads"
                         :key="ad.id"
                         :src="ad.imageSrc"
                         reverse-transition="fade-transition"
@@ -52,6 +52,18 @@
             </v-flex>
         </v-layout>
     </v-container>
+    <v-container v-else>
+        <v-layout row>
+            <v-flex class="text-center">
+                <v-progress-circular
+                        indeterminate
+                        :size="100"
+                        :width="4"
+                        color="purple"
+                ></v-progress-circular>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
@@ -62,6 +74,9 @@
             },
             ads () {
                 return this.$store.getters.ads
+            },
+            loading () {
+                return this.$store.getters.loading
             }
         }
     }

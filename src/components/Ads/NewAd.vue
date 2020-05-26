@@ -41,7 +41,8 @@
                 <v-layout>
                     <v-spacer></v-spacer>
                     <v-btn
-                        :disabled="!valid"
+                        :loading="loading"
+                        :disabled="!valid || loading"
                         class="success"
                         @click="createAd"
                     >Create ad</v-btn>
@@ -61,6 +62,11 @@
                 valid: false
             }
         },
+        computed: {
+            loading () {
+                return this.$store.getters.loading
+            }
+        },
         methods: {
             createAd () {
                 if (this.$refs.form.validate()){
@@ -70,12 +76,13 @@
                         promo: this.promo,
                         imageSrc: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
                     };
-                    this.$store.dispatch('crateAd', ad)
+                    this.$store.dispatch('createAd', ad).then(() => {
+                            this.$router.push('/list')
+                        }).catch(() => {})
                 }
             }
         }
     }
-    
 </script>
 
 <style scoped>
