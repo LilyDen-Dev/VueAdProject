@@ -13,8 +13,8 @@
                    </v-card-text>
                    <v-card-actions>
                        <v-spacer></v-spacer>
-                       <add-edit-ad-modal :ad="ad" v-if="isQwver"></add-edit-ad-modal>
-                       <v-btn class="success">Buy</v-btn>
+                       <add-edit-ad-modal :ad="ad" v-if="isOwner"></add-edit-ad-modal>
+                       <app-buy-modal :ad="ad"></app-buy-modal>
                    </v-card-actions>
                </v-card>
                 <v-container v-else>
@@ -47,7 +47,7 @@
             loading () {
                 return this.$store.getters.loading
             },
-            isQwver () {
+            isOwner () {
                 return this.ad.ownerId === this.$store.getters.user.id
             }
         },

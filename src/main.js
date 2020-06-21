@@ -4,14 +4,16 @@ import VueRouter from 'vue-router'
 import routes from './router'
 import store from './store'
 import Vuetify from "vuetify"
+import BuyModalComponent from "@/components/Shared/BuyModal"
 import * as fb from "firebase"
 import 'vuetify/dist/vuetify.min.css'
 import vuetify from '@/plugins/vuetify'
 
 
-Vue.use(VueRouter)
-Vue.use(Vuetify)
-Vue.config.productionTip = false
+Vue.use(VueRouter);
+Vue.use(Vuetify);
+Vue.component('app-buy-modal', BuyModalComponent);
+Vue.config.productionTip = false;
 
 new Vue({
     vuetify,
